@@ -16,7 +16,7 @@ export const addTask = async (title: string) => {
     const response = await axios.post(API_URL, {
       title,
       completed: false,
-      userId: 1, // required by the API
+      userId: 1, 
     });
     return response.data;
   } catch (error) {
