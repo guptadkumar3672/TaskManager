@@ -18,14 +18,21 @@ const TaskItem: React.FC<TaskItemProps> = ({task, onToggle, onDelete}) => {
     <View style={styles.container}>
       <View style={styles.taskInfo}>
         <TouchableOpacity onPress={() => onToggle(task.id, !task.completed)}>
-          <View
-            style={{
-              height: 20,
-              width: 20,
-              backgroundColor: task.completed ? '#4CAF50' : '#888',
-              borderRadius: 12,
-            }}
-          />
+          {task.completed ? (
+            <Image
+              source={Images.checked}
+              style={{height: 23, width: 23}}
+              resizeMode="contain"
+              tintColor={'green'}
+            />
+          ) : (
+            <Image
+              source={Images.clock}
+              style={{height: 23, width: 23}}
+              resizeMode="contain"
+              tintColor={'#DC3545'}
+            />
+          )}
         </TouchableOpacity>
         <Text style={[styles.taskText, task.completed && styles.completedTask]}>
           {task.title}
@@ -36,6 +43,7 @@ const TaskItem: React.FC<TaskItemProps> = ({task, onToggle, onDelete}) => {
           source={Images.delete}
           style={{height: 28, width: 28}}
           resizeMode="contain"
+          tintColor={'#5F12AA'}
         />
       </TouchableOpacity>
     </View>
@@ -52,6 +60,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 10,
     elevation: 2,
+    borderWidth: 1,
+    borderColor: '#5F12AA',
+    marginBottom: 15,
   },
   taskInfo: {
     flexDirection: 'row',
@@ -63,6 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     flex: 1,
+    marginRight: 15,
   },
   completedTask: {
     textDecorationLine: 'line-through',

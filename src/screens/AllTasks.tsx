@@ -29,6 +29,7 @@ const AllTasks: React.FC = () => {
         ListEmptyComponent={
           <Text style={styles.emptyText}>No tasks found. Add a new task!</Text>
         }
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContent}
       />
     </View>
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: 'white',
   },
   listContent: {
     flexGrow: 1,

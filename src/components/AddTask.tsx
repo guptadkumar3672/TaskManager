@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   addButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#5F12AA',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',

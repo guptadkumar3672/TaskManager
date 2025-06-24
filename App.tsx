@@ -18,8 +18,6 @@ const App: React.FC = () => {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconSource;
-
-              //
               if (route.name === 'All') {
                 iconSource = focused
                   ? Images.grid
@@ -37,11 +35,11 @@ const App: React.FC = () => {
                 />
               );
             },
-            tabBarActiveTintColor: '#4CAF50',
+            tabBarActiveTintColor: '#5F12AA',
             tabBarInactiveTintColor: 'gray',
           })}>
-          <Tab.Screen name="All" component={AllTasks} />
-          <Tab.Screen name="Completed" component={CompletedTasks} />
+          <Tab.Screen name="All Tasks" component={AllTasks} />
+          <Tab.Screen name="Completed Tasks" component={CompletedTasks} />
         </Tab.Navigator>
       </NavigationContainer>
       <Toast />
