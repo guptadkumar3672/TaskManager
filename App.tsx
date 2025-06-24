@@ -19,6 +19,7 @@ const App: React.FC = () => {
             tabBarIcon: ({ focused, color, size }) => {
               let iconSource;
 
+              //
               if (route.name === 'All') {
                 iconSource = focused
                   ? Images.grid
