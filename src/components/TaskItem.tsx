@@ -23,14 +23,14 @@ const TaskItem: React.FC<TaskItemProps> = ({task, onToggle, onDelete}) => {
               source={Images.checked}
               style={{height: 23, width: 23}}
               resizeMode="contain"
-              tintColor={'green'}
+              tintColor={'#5F12AA'}
             />
           ) : (
             <Image
               source={Images.clock}
-              style={{height: 23, width: 23}}
+              style={{height: 18, width: 18}}
               resizeMode="contain"
-              tintColor={'#DC3545'}
+              tintColor={'#5F12AA'}
             />
           )}
         </TouchableOpacity>
