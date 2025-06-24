@@ -1,9 +1,8 @@
 import React from 'react';
-import {Image} from 'react-native';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import Images from '../assets/images';
 
-interface TaskItemProps {
+type TaskItemProps = {
   task: {
     id: number;
     title: string;
@@ -11,39 +10,33 @@ interface TaskItemProps {
   };
   onToggle: (id: number, completed: boolean) => void;
   onDelete: (id: number) => void;
-}
+};
 
-const TaskItem: React.FC<TaskItemProps> = ({task, onToggle, onDelete}) => {
+const TaskItem = ({task, onToggle, onDelete}: TaskItemProps) => {
+  const handleToggle = () => onToggle(task.id, !task.completed);
+  const handleDelete = () => onDelete(task.id);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.taskInfo}>
-        <TouchableOpacity onPress={() => onToggle(task.id, !task.completed)}>
-          {task.completed ? (
-            <Image
-              source={Images.checked}
-              style={{height: 23, width: 23}}
-              resizeMode="contain"
-              tintColor={'#5F12AA'}
-            />
-          ) : (
-            <Image
-              source={Images.clock}
-              style={{height: 18, width: 18}}
-              resizeMode="contain"
-              tintColor={'#5F12AA'}
-            />
-          )}
+    <View style={styles.taskContainer}>
+      <View style={styles.content}>
+        <TouchableOpacity onPress={handleToggle}>
+          <Image
+            source={task.completed ? Images.checked : Images.clock}
+            style={task.completed ? styles.checkedIcon : styles.uncheckedIcon}
+            tintColor="#5F12AA"
+          />
         </TouchableOpacity>
-        <Text style={[styles.taskText, task.completed && styles.completedTask]}>
+
+        <Text style={[styles.title, task.completed && styles.completedTitle]}>
           {task.title}
         </Text>
       </View>
-      <TouchableOpacity onPress={() => onDelete(task.id)}>
+
+      <TouchableOpacity onPress={handleDelete}>
         <Image
           source={Images.delete}
-          style={{height: 28, width: 28}}
-          resizeMode="contain"
-          tintColor={'#5F12AA'}
+          style={styles.deleteIcon}
+          tintColor="#5F12AA"
         />
       </TouchableOpacity>
     </View>
@@ -51,39 +44,49 @@ const TaskItem: React.FC<TaskItemProps> = ({task, onToggle, onDelete}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  taskContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 15,
-    marginVertical: 5,
+    marginBottom: 20,
     backgroundColor: '#FFF',
     borderRadius: 10,
-    elevation: 2,
     borderWidth: 1,
     borderColor: '#5F12AA',
-    marginBottom: 15,
-     shadowColor: '#000', 
-    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
   },
-  taskInfo: {
+  content: {
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
   },
-  taskText: {
+  title: {
     marginLeft: 10,
     fontSize: 16,
     color: '#333',
     flex: 1,
     marginRight: 15,
   },
-  completedTask: {
+  completedTitle: {
     textDecorationLine: 'line-through',
     color: '#888',
+  },
+  checkedIcon: {
+    height: 23,
+    width: 23,
+  },
+  uncheckedIcon: {
+    height: 18,
+    width: 18,
+  },
+  deleteIcon: {
+    height: 28,
+    width: 28,
   },
 });
 

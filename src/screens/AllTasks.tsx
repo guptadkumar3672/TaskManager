@@ -5,7 +5,7 @@ import TaskItem from '../components/TaskItem';
 import AddTask from '../components/AddTask';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-const AllTasks: React.FC = () => {
+const AllTasks = () => {
   const {tasks, loading, handleAddTask, handleToggleTask, handleDeleteTask} =
     useTasks();
 

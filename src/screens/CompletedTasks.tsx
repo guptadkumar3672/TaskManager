@@ -4,8 +4,8 @@ import {useTasks} from '../context/TaskContext';
 import TaskItem from '../components/TaskItem';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-const CompletedTasks: React.FC = () => {
-  const {tasks, loading} = useTasks();
+const CompletedTasks = () => {
+  const {tasks, loading, handleToggleTask, handleDeleteTask} = useTasks();
   const completedTasks = tasks.filter(task => task.completed);
 
   if (loading) {
@@ -18,7 +18,11 @@ const CompletedTasks: React.FC = () => {
         data={completedTasks}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
-          <TaskItem task={item} onToggle={() => {}} onDelete={() => {}} />
+          <TaskItem
+            task={item}
+            onToggle={handleToggleTask}
+            onDelete={handleDeleteTask}
+          />
         )}
         ListEmptyComponent={
           <Text style={styles.emptyText}>No completed tasks yet!</Text>

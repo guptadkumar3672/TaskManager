@@ -1,37 +1,34 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, StyleSheet } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image, StyleSheet} from 'react-native';
 import Toast from 'react-native-toast-message';
-import { TaskProvider } from './src/context/TaskContext';
+import {TaskProvider} from './src/context/TaskContext';
 import AllTasks from './src/screens/AllTasks';
 import CompletedTasks from './src/screens/CompletedTasks';
 import Images from './src/assets/images';
 
 const Tab = createBottomTabNavigator();
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <TaskProvider>
       <NavigationContainer>
         <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
+          screenOptions={({route}) => ({
+            tabBarIcon: ({focused, color, size}) => {
               let iconSource;
-              if (route.name === 'All') {
-                iconSource = focused
-                  ? Images.grid
-                  : Images.grid
+
+              if (route.name == 'All Tasks') {
+                iconSource = Images.grid;
               } else {
-                iconSource = focused
-                  ? Images.list
-                  : Images.list
+                iconSource = Images.list;
               }
 
               return (
                 <Image
                   source={iconSource}
-                  style={[styles.tabIcon, { tintColor: color }]}
+                  style={[styles.tabIcon, {tintColor: color}]}
                 />
               );
             },

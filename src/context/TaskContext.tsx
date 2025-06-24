@@ -42,6 +42,7 @@ export const TaskProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   const handleAddTask = async (title: string) => {
+    setLoading(true);
     try {
       const newTask = await addTask(title);
       setTasks([...tasks, newTask]);
@@ -56,10 +57,13 @@ export const TaskProvider: React.FC<{children: React.ReactNode}> = ({
         text1: 'Error',
         text2: error instanceof Error ? error.message : 'Failed to add task',
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleToggleTask = async (id: number, completed: boolean) => {
+    setLoading(true);
     try {
       await toggleTask(id, completed);
       setTasks(
@@ -71,10 +75,13 @@ export const TaskProvider: React.FC<{children: React.ReactNode}> = ({
         text1: 'Error',
         text2: error instanceof Error ? error.message : 'Failed to update task',
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDeleteTask = async (id: number) => {
+    setLoading(true);
     try {
       await deleteTask(id);
       setTasks(tasks.filter(task => task.id !== id));
@@ -89,6 +96,8 @@ export const TaskProvider: React.FC<{children: React.ReactNode}> = ({
         text1: 'Error',
         text2: error instanceof Error ? error.message : 'Failed to delete task',
       });
+    } finally {
+      setLoading(false);
     }
   };
 

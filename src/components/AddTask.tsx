@@ -7,31 +7,37 @@ import {
   StyleSheet,
 } from 'react-native';
 
-interface AddTaskProps {
+type AddTaskProps = {
   onAdd: (title: string) => void;
-}
+};
 
-const AddTask: React.FC<AddTaskProps> = ({onAdd}) => {
-  const [title, setTitle] = useState('');
+const AddTask = ({onAdd}: AddTaskProps) => {
+  const [taskTitle, setTaskTitle] = useState('');
 
-  const handleAdd = () => {
-    if (title.trim()) {
-      onAdd(title);
-      setTitle('');
+  const handleAddTask = () => {
+    const trimmedTitle = taskTitle.trim();
+    if (trimmedTitle) {
+      onAdd(trimmedTitle);
+      setTaskTitle('');
     }
   };
 
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={styles.inputField}
         placeholder="Add a new task..."
-        value={title}
-        onChangeText={setTitle}
-        onSubmitEditing={handleAdd}
+        value={taskTitle}
+        onChangeText={setTaskTitle}
+        onSubmitEditing={handleAddTask}
+        placeholderTextColor="#999"
       />
-      <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
-        <Text style={styles.addButtonText}>Add</Text>
+
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={handleAddTask}
+        activeOpacity={0.8}>
+        <Text style={styles.buttonText}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -41,8 +47,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginBottom: 20,
+    paddingHorizontal: 10,
   },
-  input: {
+  inputField: {
     flex: 1,
     borderWidth: 1,
     borderColor: '#DDD',
@@ -53,15 +60,16 @@ const styles = StyleSheet.create({
   },
   addButton: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 8,
     backgroundColor: '#5F12AA',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  addButtonText: {
+  buttonText: {
     color: '#FFF',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    fontSize: 16,
   },
 });
 
