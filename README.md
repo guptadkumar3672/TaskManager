@@ -5,7 +5,7 @@
 
 2. **Type Safety**: The code uses TypeScript for better type safety.
 
-3. **UI/UX**: The interface is clean and user-friendly with:
+3. **UI/UX**:
    - Shows tasks in a neat list
    - Empty state messages
    - Add new tasks with a add button
