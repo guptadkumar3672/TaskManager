@@ -3,16 +3,16 @@
 
 1. **Error Handling**: The app includes comprehensive error handling with toast messages for all API operations.
 
-2. **Type Safety**: The code uses TypeScript for better type safety and developer experience.
+2. **Type Safety**: The code uses TypeScript for better type safety.
 
 3. **UI/UX**: The interface is clean and user-friendly with:
-   - Visual feedback for actions
-   - Loading indicators
+   - Shows tasks in a neat list
    - Empty state messages
-   - Intuitive navigation
+   - Add new tasks with a add button
+   - Removes tasks with delete button
+   - Shows loading indicators when saving changes
+   - Separates active and completed tasks in different tabs
 
 4. **Performance**: The app uses FlatList for efficient rendering of tasks.
 
-5. **Testing**: The code is structured to make it easy to test individual components.
 
-This implementation covers all the requirements from your assignment and includes the optional tab navigation feature. The code is well-organized, typed, and follows React Native best practices.
